@@ -296,7 +296,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6q-EK-78p">
                                                     <rect key="frame" x="11" y="52" width="353" height="200"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="american" translatesAutoresizingMaskIntoConstraints="NO" id="ePW-DI-7gl">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="restaurant-image-stub" translatesAutoresizingMaskIntoConstraints="NO" id="ePW-DI-7gl">
                                                             <rect key="frame" x="0.0" y="0.0" width="353" height="200"/>
                                                         </imageView>
                                                     </subviews>
@@ -1271,7 +1271,6 @@
     </scenes>
     <resources>
         <image name="0star" width="226" height="38"/>
-        <image name="american" width="88.5" height="64.5"/>
         <image name="btn-location" width="96" height="25"/>
         <image name="detail-logo" width="220" height="112"/>
         <image name="icon-calendar" width="16" height="16"/>
@@ -1281,6 +1280,7 @@
         <image name="icon-map-on" width="16" height="22"/>
         <image name="icon-photo" width="27" height="22"/>
         <image name="icon-review" width="26" height="25"/>
+        <image name="restaurant-image-stub" width="207" height="207"/>
         <image name="time-bg" width="68" height="27"/>
         <namedColor name="LetsEat Dark Gray">
             <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

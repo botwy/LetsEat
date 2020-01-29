@@ -22,16 +22,8 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        cell.accessoryType = .checkmark
         selectedCity = manager.locationItem(at:indexPath)
         tableView.reloadData()
-        
-//        if cell.accessoryType == .checkmark {
-//            cell.accessoryType = .none
-//        } else {
-//            cell.accessoryType = .checkmark
-//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,7 +38,7 @@ class LocationViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func  set(selected cell: UITableViewCell, at indexPath: IndexPath) {
+    func set(selected cell: UITableViewCell, at indexPath: IndexPath) {
         if let city = selectedCity {
             let data = manager.findLocation(by: city)
             if data.isFound {

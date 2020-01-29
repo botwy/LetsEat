@@ -71,11 +71,11 @@ class ExploreViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     // Add Unwind here
-    @IBAction func unwindLocationCancel(segue: UIStoryboardSegue) {}
+    @IBAction func unwindLocationCancel(sender: UIStoryboardSegue) {}
     
     // Add Unwind here
-    @IBAction func unwindLocationDo(segue: UIStoryboardSegue) {
-        if let viewController = segue.source as? LocationViewController {
+    @IBAction func unwindLocationDo(sender: UIStoryboardSegue) {
+        if let viewController = sender.source as? LocationViewController {
             selectedCity = viewController.selectedCity
             if let location = selectedCity {
                 headerView.lblLocation.text = location
