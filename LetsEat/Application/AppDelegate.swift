@@ -13,9 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    public static var networkService: NetworkService {
-        return NetworkService()
-    }
+    public static var networkService: NetworkService = {
+        let configuration: NetworkConfiguration
+        #if DEBUG
+        configuration = LocalNetworkConfiguration()
+        #elseif HEROKU_DEBUG
+        configuration = HerokuNetworkConfiguration()
+        #else
+        configuration = HerokuNetworkConfiguration()
+        #endif
+        
+        return NetworkService(networkConfiguration: configuration)
+    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

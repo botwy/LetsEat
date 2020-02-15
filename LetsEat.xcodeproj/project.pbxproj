@@ -15,6 +15,9 @@
 		D71C39F523A61911003B3839 /* ExploreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C39F423A61911003B3839 /* ExploreDataManager.swift */; };
 		D71C39F723A61F48003B3839 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C39F623A61F48003B3839 /* ExploreCell.swift */; };
 		D71EB5EF23DD81580001852D /* ExploreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71EB5EE23DD81580001852D /* ExploreHeaderView.swift */; };
+		D71EB5F123F874470001852D /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71EB5F023F874470001852D /* NetworkConfiguration.swift */; };
+		D71EB5F323F875440001852D /* HerokuNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71EB5F223F875440001852D /* HerokuNetworkConfiguration.swift */; };
+		D71EB5F523F875C20001852D /* LocalNetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71EB5F423F875C20001852D /* LocalNetworkConfiguration.swift */; };
 		D72A267123B91C8400B82511 /* sample-restaurant-img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D72A266E23B91C8400B82511 /* sample-restaurant-img@2x.png */; };
 		D72A267223B91C8400B82511 /* sample-restaurant-img.png in Resources */ = {isa = PBXBuildFile; fileRef = D72A266F23B91C8400B82511 /* sample-restaurant-img.png */; };
 		D72A267323B91C8400B82511 /* sample-restaurant-img@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D72A267023B91C8400B82511 /* sample-restaurant-img@3x.png */; };
@@ -81,6 +84,9 @@
 		D71C39F423A61911003B3839 /* ExploreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataManager.swift; sourceTree = "<group>"; };
 		D71C39F623A61F48003B3839 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		D71EB5EE23DD81580001852D /* ExploreHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreHeaderView.swift; sourceTree = "<group>"; };
+		D71EB5F023F874470001852D /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
+		D71EB5F223F875440001852D /* HerokuNetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HerokuNetworkConfiguration.swift; sourceTree = "<group>"; };
+		D71EB5F423F875C20001852D /* LocalNetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNetworkConfiguration.swift; sourceTree = "<group>"; };
 		D72A266E23B91C8400B82511 /* sample-restaurant-img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-restaurant-img@2x.png"; sourceTree = "<group>"; };
 		D72A266F23B91C8400B82511 /* sample-restaurant-img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-restaurant-img.png"; sourceTree = "<group>"; };
 		D72A267023B91C8400B82511 /* sample-restaurant-img@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sample-restaurant-img@3x.png"; sourceTree = "<group>"; };
@@ -282,6 +288,9 @@
 			isa = PBXGroup;
 			children = (
 				D7EAAC6223DC3198009C9397 /* NetworkService.swift */,
+				D71EB5F023F874470001852D /* NetworkConfiguration.swift */,
+				D71EB5F223F875440001852D /* HerokuNetworkConfiguration.swift */,
+				D71EB5F423F875C20001852D /* LocalNetworkConfiguration.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -434,9 +443,11 @@
 				D7400AFA23DB244100F804B5 /* RestaurantDataManager.swift in Sources */,
 				D700A7AE23B4FC6200AB11B0 /* JSON.swift in Sources */,
 				D7E6C6D12393DAED00CDC156 /* RestaurantViewController.swift in Sources */,
+				D71EB5F123F874470001852D /* NetworkConfiguration.swift in Sources */,
 				D72A268F23C3D0B400B82511 /* RestaurantDetailDataNetworkManager.swift in Sources */,
 				D7F0C6F323AA46ED00F605BF /* LocationDataManager.swift in Sources */,
 				D7BB8E8B23AFD4A500D93700 /* MapDataStubManager.swift in Sources */,
+				D71EB5F323F875440001852D /* HerokuNetworkConfiguration.swift in Sources */,
 				D72A269523C601D900B82511 /* RestaurantDetailDataManger.swift in Sources */,
 				D7400AFC23DB24A100F804B5 /* RestaurantDataNetworkManager.swift in Sources */,
 				D72A269123C3D14D00B82511 /* RestaurantDetail.swift in Sources */,
@@ -446,6 +457,7 @@
 				D7E6C6D32393DB3C00CDC156 /* ExploreViewController.swift in Sources */,
 				D700A7B523B8FBEC00AB11B0 /* RestaurantDetailViewController.swift in Sources */,
 				D71C39F723A61F48003B3839 /* ExploreCell.swift in Sources */,
+				D71EB5F523F875C20001852D /* LocalNetworkConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +499,109 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D71EB5F623F877FB0001852D /* HerokuDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = HEROKU_DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = HerokuDebug;
+		};
+		D71EB5F723F877FB0001852D /* HerokuDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27Q4D7MK33;
+				INFOPLIST_FILE = LetsEat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.goncharov-dva.LetsEat";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = off;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = HerokuDebug;
+		};
+		D71EB5F823F877FB0001852D /* HerokuDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 27Q4D7MK33;
+				INFOPLIST_FILE = LetsEatContentExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.goncharov-dva.LetsEat.LetsEatContentExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = HerokuDebug;
+		};
 		D72A268B23B9218D00B82511 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -694,6 +809,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D72A268B23B9218D00B82511 /* Debug */,
+				D71EB5F823F877FB0001852D /* HerokuDebug */,
 				D72A268C23B9218D00B82511 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -703,6 +819,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E1D1D12393A41F009DF781 /* Debug */,
+				D71EB5F623F877FB0001852D /* HerokuDebug */,
 				D7E1D1D22393A41F009DF781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -712,6 +829,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D7E1D1D42393A41F009DF781 /* Debug */,
+				D71EB5F723F877FB0001852D /* HerokuDebug */,
 				D7E1D1D52393A41F009DF781 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

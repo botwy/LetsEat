@@ -10,11 +10,18 @@ import Foundation
 
 class NetworkService {
     
-    private let baseUrlPath = "https://lets-eat-botwy.herokuapp.com/letseat"
-    private lazy var baseUrl = URL(string: baseUrlPath)!
-    let session = URLSession.shared
+    private let session = URLSession.shared
+    private let networkConfiguration: NetworkConfiguration
+    private var baseUrl: URL {
+        URL(string: networkConfiguration.baseUrlPath)!
+    }
 
+    init(networkConfiguration: NetworkConfiguration) {
+        self.networkConfiguration = networkConfiguration
+    }
+    
     func fetch<T: Codable>(endpointPath path: String, completion: @escaping (_ json: T) -> Void) {
+        let baseUrlPath = networkConfiguration.baseUrlPath
         let url = URL(string: "\(baseUrlPath)/\(path)")!
         
         let dataTask = session.dataTask(with: url) { (data, response, error) in

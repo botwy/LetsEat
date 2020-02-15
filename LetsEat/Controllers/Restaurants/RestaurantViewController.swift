@@ -22,6 +22,7 @@ class RestaurantViewController: UIViewController, UICollectionViewDataSource, UI
             self.collectionView.reloadData()
         })
     }
+    
     override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       print("selected city \(selectedCity as Any)")
