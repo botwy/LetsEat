@@ -9,7 +9,7 @@
 import Foundation
 
 protocol RestaurantDataManager {
-    func fetch(completion: @escaping ([RestaurantItem]) -> Void)
+    func fetch(byLocation location: String, withFilter: String, completion: @escaping ([RestaurantItem]) -> Void)
     var numberOfItems: Int { get }
     func getItem(at indexPath: IndexPath) -> RestaurantItem
 }

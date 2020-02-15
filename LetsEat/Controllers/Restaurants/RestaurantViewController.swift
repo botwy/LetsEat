@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestaurantViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var manager: RestaurantDataManager? = RestaurantDataNetworkManager()
@@ -18,42 +18,52 @@ class RestaurantViewController: UIViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager?.fetch(completion: { (restaurants) in
+        guard let city = selectedCity, let cuisineType = selectedType else { return }
+        manager?.fetch(byLocation: city, withFilter: cuisineType, completion: { (restaurants) in
             self.collectionView.reloadData()
         })
     }
     
     override func viewDidAppear(_ animated: Bool) {
-      super.viewDidAppear(animated)
-      print("selected city \(selectedCity as Any)")
-      print("selected type \(selectedType as Any)")
+        super.viewDidAppear(animated)
+        setupTitle()
     }
     
+    private func setupTitle() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        if let city = selectedCity {
+            title = "\(city.uppercased())"
+        }
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+}
+
+extension RestaurantViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restaurantCell", for: indexPath) as! RestaurantCell
-        let restaurant = manager?.getItem(at: indexPath)
-        cell.nameLabel.text = restaurant?.name
-        if let cuisines = restaurant?.cuisines, cuisines.count > 0 {
-            cell.cuisineLabel.text = restaurant?.cuisines.joined(separator: ", ")
-        }
-        if let imageURL = restaurant?.imageURL,
-            let url = URL(string: imageURL) {
-            DispatchQueue.global().async {
-                guard let data = try? Data(contentsOf: url) else { return }
-                DispatchQueue.main.async {
-                    cell.photo.image = UIImage(data: data)
-                }
-            }
-        }
-        
-        return cell
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return manager?.numberOfItems ?? 0
-    }
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "restaurantCell", for: indexPath) as! RestaurantCell
+           let restaurant = manager?.getItem(at: indexPath)
+           cell.nameLabel.text = restaurant?.name
+           if let cuisines = restaurant?.cuisines, cuisines.count > 0 {
+               cell.cuisineLabel.text = restaurant?.cuisines.joined(separator: ", ")
+           }
+           if let imageURL = restaurant?.imageURL,
+               let url = URL(string: imageURL) {
+               DispatchQueue.global().async {
+                   guard let data = try? Data(contentsOf: url) else { return }
+                   DispatchQueue.main.async {
+                       cell.photo.image = UIImage(data: data)
+                   }
+               }
+           }
+           
+           return cell
+       }
+       
+       func numberOfSections(in collectionView: UICollectionView) -> Int {
+           return 1
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+           return manager?.numberOfItems ?? 0
+       }
 }
