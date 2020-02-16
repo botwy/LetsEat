@@ -10,12 +10,30 @@ import UIKit
 
 class RestaurantDetailViewController: UITableViewController {
 
-    let manager: RestaurantDetailDataManager = RestaurantDetailDataNetworkManager()
+    var manager: RestaurantDetailDataManager?
     
     var selectedRestaurant:RestaurantItem?
     
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var stars: UIImageView!
+    
+//    // Nav Bar
+//    @IBOutlet weak var btnHeart: UIBarButtonItem!
+//
+//    // Cell One
+//    @IBOutlet weak var lblName: UILabel!
+//    @IBOutlet weak var lblCuisine: UILabel!
+//    @IBOutlet weak var lblHeaderAddress: UILabel!
+//
+//    // Cell Two
+//    @IBOutlet weak var lblTableDetails: UILabel!
+//
+//    // Cell Three
+//    @IBOutlet weak var lblOverallRating: UILabel!
+//
+//    // Cell Eight
+//    @IBOutlet weak var lblAddress: UILabel!
+//    @IBOutlet weak var imgMap: UIImageView!
     
     @IBAction func onTimeTapped(sender: UIButton) {
         showNotification(sender: sender.titleLabel?.text)
@@ -31,7 +49,7 @@ class RestaurantDetailViewController: UITableViewController {
     
     func initialize() {
        setupNotificationDefaults()
-        manager.fetch { (detail) in
+        manager?.fetch { (detail) in
             switch(detail.starNumber) {
             case 0: break;
             case 1:

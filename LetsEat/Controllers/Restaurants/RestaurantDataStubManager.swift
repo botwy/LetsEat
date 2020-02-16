@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RestaurantDataNetworkManager: RestaurantDataManager {
+class RestaurantDataStubManager: RestaurantDataManager {
     
     private var items: [RestaurantItem] = []
     private var location: String?
@@ -26,11 +26,22 @@ class RestaurantDataNetworkManager: RestaurantDataManager {
         self.location = location
         self.cuisineFilter = withFilter
         
-        AppDelegate.networkService.fetch(endpointPath: "restaurants") { (json: [JSON.Restaurant]) in
-            self.items = json.map{ RestaurantItem(restaurant: $0) }
-            self.filterItems()
-            completion(self.items)
+        if items.count > 0 {
+            items.removeAll()
         }
+        let dictList = loadData()
+        items = dictList.map { RestaurantItem(dict: $0) }
+        filterItems()
+        completion(items)
+    }
+    
+    private func loadData() -> [[String:AnyObject]] {
+        guard let path = Bundle.main.path(forResource: "Restaurants", ofType: "plist"),
+            let dictList = NSArray(contentsOfFile: path) else {
+                return [[:]]
+        }
+        
+        return dictList as! [[String:AnyObject]]
     }
     
     private func filterItems() {

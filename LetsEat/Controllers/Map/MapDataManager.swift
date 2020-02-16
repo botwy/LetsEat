@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 protocol MapDataManager {
+    var annotations: [RestaurantItem] { get }
     func fetch(completion: @escaping ([RestaurantItem]) -> Void)
     func currentRegion(latDelta: CLLocationDegrees, longDelta: CLLocationDegrees) -> MKCoordinateRegion
-    var annotations: [RestaurantItem] { get }
 }

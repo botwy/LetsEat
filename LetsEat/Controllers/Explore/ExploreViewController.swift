@@ -10,6 +10,8 @@ import UIKit
 
 class ExploreViewController: UIViewController, UICollectionViewDelegate {
     
+    var restaurantDataSourceFabric: RestaurantDataSourceFabric?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     var selectedCity:String?
     var headerView: ExploreHeaderView!
@@ -65,6 +67,8 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate {
           let type = manager.explore(at: index).name {
               viewController.selectedType = type
               viewController.selectedCity = city
+        viewController.manager = restaurantDataSourceFabric?.restaurantDataSource
+        viewController.restaurantDataSourceFabric = restaurantDataSourceFabric
        }
     }
     

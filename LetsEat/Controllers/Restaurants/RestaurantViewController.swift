@@ -10,8 +10,10 @@ import UIKit
 
 class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     
+    var restaurantDataSourceFabric: RestaurantDataSourceFabric?
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    var manager: RestaurantDataManager? = RestaurantDataNetworkManager()
+    var manager: RestaurantDataManager?
     var selectedRestaurant:RestaurantItem?
     var selectedCity:String?
     var selectedType:String?
@@ -27,6 +29,22 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTitle()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        switch segue.identifier! {
+        case Segue.showDetail.rawValue:
+            showDetail(segue: segue)
+        default:
+            debugPrint("Segue not added")
+        }
+    }
+    
+    private func showDetail(segue: UIStoryboardSegue) {
+        guard let controller = segue.destination as? RestaurantDetailViewController else {
+            return
+        }
+        controller.manager = restaurantDataSourceFabric?.restaurantDetailDataSource
     }
     
     private func setupTitle() {

@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kd-h2-R0S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="225"/>
+            <point key="canvasLocation" x="1314" y="215"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="lxY-fg-T8V">
@@ -437,7 +437,7 @@
             <objects>
                 <tableViewController id="7ph-MZ-gai" customClass="RestaurantDetailViewController" customModule="LetsEat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3v-Co-Mhg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -522,10 +522,10 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-Hb-RLE">
-                                                    <rect key="frame" x="15" y="51" width="290" height="54"/>
+                                                    <rect key="frame" x="15" y="51" width="290" height="27"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSA-zG-6Rl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="54"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="UaW-lV-MTa"/>
                                                             </constraints>
@@ -538,7 +538,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c85-xz-2QA">
-                                                            <rect key="frame" x="100" y="0.0" width="90" height="54"/>
+                                                            <rect key="frame" x="100" y="0.0" width="90" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="sxO-hv-11w"/>
                                                             </constraints>
@@ -551,7 +551,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5x-bf-pMv">
-                                                            <rect key="frame" x="200" y="0.0" width="90" height="54"/>
+                                                            <rect key="frame" x="200" y="0.0" width="90" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="mRL-xh-9W6"/>
                                                             </constraints>
@@ -890,7 +890,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="eGX-pA-mbu" kind="relationship" relationship="rootViewController" id="iS9-58-hqj"/>
+                        <segue destination="dIQ-KP-7sE" kind="relationship" relationship="rootViewController" id="arP-2s-5RF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ks-jg-1is" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -914,25 +914,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ck0-iV-Jm8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315.9420289855072" y="-1164.5089285714284"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="I2J-s9-W3O">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eGX-pA-mbu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Gvg-pN-Qag"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K1U-d6-kTS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="dIQ-KP-7sE" kind="relationship" relationship="rootViewController" id="Mn3-vx-vtJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zgf-jH-HtL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1317.3913043478262" y="191.51785714285714"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oY1-Ic-Fjm">
@@ -1290,6 +1271,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pj6-np-oPs"/>
+        <segue reference="7mh-xm-YJD"/>
     </inferredMetricsTieBreakers>
 </document>

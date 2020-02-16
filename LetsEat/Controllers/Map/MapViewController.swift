@@ -13,7 +13,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
 
-    var manager: MapDataManager? = MapDataNetworkManager()
+    var manager: MapDataManager?
     
     var selectedRestaurant:RestaurantItem?
     

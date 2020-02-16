@@ -32,7 +32,7 @@ class MapDataStubManager: MapDataManager {
         completion(items)
     }
     
-    func loadData() -> [[String:AnyObject]] {
+    private func loadData() -> [[String:AnyObject]] {
         guard let path = Bundle.main.path(forResource: "MapLocations", ofType: "plist"),
             let dictList = NSArray(contentsOfFile: path) else {
                 return [[:]]
