@@ -19,6 +19,7 @@ class RestaurantItem: NSObject, MKAnnotation {
     var postalCode:String?
     var state:String?
     var imageURL:String?
+    var restaurantID:Int?
     
     convenience init(dict: [String : AnyObject]) {
         self.init()
@@ -30,6 +31,7 @@ class RestaurantItem: NSObject, MKAnnotation {
         if let postalCode = dict["postalCode"] as? String { self.postalCode = postalCode }
         if let state = dict["state"] as? String { self.state = state }
         if let imageURL = dict["imageURL"] as? String { self.imageURL = imageURL }
+        if let id = dict["id"] as? Int { self.restaurantID = id }
     }
     
     var coordinate: CLLocationCoordinate2D {

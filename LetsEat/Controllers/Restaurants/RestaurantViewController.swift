@@ -34,16 +34,20 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         switch segue.identifier! {
         case Segue.showDetail.rawValue:
-            showDetail(segue: segue)
+            showRestaurantDetail(segue: segue)
         default:
             debugPrint("Segue not added")
         }
     }
     
-    private func showDetail(segue: UIStoryboardSegue) {
-        guard let controller = segue.destination as? RestaurantDetailViewController else {
+    private func showRestaurantDetail(segue: UIStoryboardSegue) {
+        guard let controller = segue.destination as? RestaurantDetailViewController,
+              let indexPath = collectionView.indexPathsForSelectedItems?.first else {
             return
         }
+        
+        let restaurant = manager?.getItem(at: indexPath)
+        controller.selectedRestaurant = restaurant
         controller.manager = restaurantDataSourceFabric?.restaurantDetailDataSource
     }
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RestaurantDetailViewController: UITableViewController {
 
@@ -14,26 +15,24 @@ class RestaurantDetailViewController: UITableViewController {
     
     var selectedRestaurant:RestaurantItem?
     
-    @IBOutlet weak var nameLabel: UILabel?
-    @IBOutlet weak var stars: UIImageView!
-    
-//    // Nav Bar
-//    @IBOutlet weak var btnHeart: UIBarButtonItem!
-//
-//    // Cell One
-//    @IBOutlet weak var lblName: UILabel!
-//    @IBOutlet weak var lblCuisine: UILabel!
-//    @IBOutlet weak var lblHeaderAddress: UILabel!
-//
-//    // Cell Two
-//    @IBOutlet weak var lblTableDetails: UILabel!
-//
-//    // Cell Three
-//    @IBOutlet weak var lblOverallRating: UILabel!
-//
-//    // Cell Eight
-//    @IBOutlet weak var lblAddress: UILabel!
-//    @IBOutlet weak var imgMap: UIImageView!
+    @IBOutlet weak var ratingView: RatingView!
+    // Nav Bar
+    @IBOutlet weak var btnHeart: UIBarButtonItem!
+
+    // Cell One
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblCuisine: UILabel!
+    @IBOutlet weak var lblHeaderAddress: UILabel!
+
+    // Cell Two
+    @IBOutlet weak var lblTableDetails: UILabel!
+
+    // Cell Three
+    @IBOutlet weak var lblOverallRating: UILabel!
+
+    // Cell Eight
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var imgMap: UIImageView!
     
     @IBAction func onTimeTapped(sender: UIButton) {
         showNotification(sender: sender.titleLabel?.text)
@@ -42,42 +41,38 @@ class RestaurantDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        nameLabel?.text = selectedRestaurant?.name
         initialize()
         dump(selectedRestaurant as Any)
     }
     
-    func initialize() {
-       setupNotificationDefaults()
-        manager?.fetch { (detail) in
-            switch(detail.starNumber) {
-            case 0: break;
-            case 1:
-                self.stars.image = UIImage(named: "1star")
-                break
-            case 2:
-                self.stars.image = UIImage(named: "2star")
-                break
-            case 3:
-                self.stars.image = UIImage(named: "3star")
-                break
-            case 4:
-                self.stars.image = UIImage(named: "4star")
-                break
-            case 5:
-                self.stars.image = UIImage(named: "5star")
-                break
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case Segue.showReview.rawValue:
+                showReview(segue: segue)
+            case Segue.showPhotoFilter.rawValue:
+                showPhotoFilter(segue: segue)
             default:
-                break
+                print("Segue not added")
             }
         }
     }
     
-    func setupNotificationDefaults() {
+    private func initialize() {
+        createRating()
+        setupLabels()
+        createMap()
+        setupNotificationDefaults()
+        manager?.fetch { (detail) in
+            
+        }
+    }
+    
+    private func setupNotificationDefaults() {
        UNUserNotificationCenter.current().delegate = self
     }
     
-    func showNotification(sender:String?) {
+    private func showNotification(sender:String?) {
        let content = UNMutableNotificationContent()
        content.title = "selected restaurant name"
        if let time = sender { content.body = "Table for 7, tonight at \(time) " }
@@ -100,6 +95,107 @@ class RestaurantDetailViewController: UITableViewController {
         }
         catch {
            print("there was an error with the notification")
+        }
+    }
+}
+
+private extension RestaurantDetailViewController {
+    
+    @IBAction func unwindReviewCancel(segue:UIStoryboardSegue) {}
+    
+    func showReview(segue:UIStoryboardSegue) {
+        guard let navController = segue.destination as? UINavigationController,
+            let viewController = navController.topViewController as? ReviewFormViewController else {
+                return
+        }
+        viewController.selectedRestaurantID = selectedRestaurant?.restaurantID
+    }
+    
+    func showPhotoFilter(segue:UIStoryboardSegue) {
+        guard let navController = segue.destination as? UINavigationController,
+            let viewController = navController.topViewController as? PhotoFilterViewController else {
+                return
+        }
+        viewController.selectedRestaurantID = selectedRestaurant?.restaurantID
+    }
+    
+    func createRating() {
+        ratingView.rating = 3.5
+        ratingView.isEnabled = true
+    }
+    
+    private func setupLabels() {
+        guard let restaurant = selectedRestaurant else { return }
+        if let name = restaurant.name {
+            lblName.text = name
+            title = name
+        }
+
+        if let cuisine = restaurant.subtitle { lblCuisine.text = cuisine }
+        if let address = restaurant.address {
+            lblAddress.text = address
+            lblHeaderAddress.text = address
+        }
+
+        lblTableDetails.text = "Table for 7, tonight at 10:00 PM"
+    }
+    
+    private func createMap() {
+        guard let annotation = selectedRestaurant, let long = annotation.longitude, let lat = annotation.latitude else { return }
+        let location = CLLocationCoordinate2D(
+            latitude: lat,
+            longitude: long
+        )
+
+        takeSnapShot(with: location)
+    }
+    
+    private func takeSnapShot(with location: CLLocationCoordinate2D) {
+        let mapSnapshotOptions = MKMapSnapshotter.Options()
+        var loc = location
+        let polyLine = MKPolyline(coordinates: &loc, count: 1)
+        let region = MKCoordinateRegion(polyLine.boundingMapRect)
+        
+        mapSnapshotOptions.region = region
+        mapSnapshotOptions.scale = UIScreen.main.scale
+        mapSnapshotOptions.size = CGSize(width: 340, height: 208)
+        mapSnapshotOptions.showsBuildings = true
+        mapSnapshotOptions.showsPointsOfInterest = true
+
+        let snapShotter = MKMapSnapshotter(options: mapSnapshotOptions)
+        snapShotter.start() { snapshot, error in
+            guard let snapshot = snapshot else {
+                return
+            }
+
+            UIGraphicsBeginImageContextWithOptions(mapSnapshotOptions.size, true, 0)
+            snapshot.image.draw(at: .zero)
+
+            let identifier = "custompin"
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+
+            let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            pinView.image = UIImage(named: "custom-annotation")!
+            let pinImage = pinView.image
+            var point = snapshot.point(for: location)
+
+            let rect = self.imgMap.bounds
+            if rect.contains(point) {
+                let pinCenterOffset = pinView.centerOffset
+                point.x -= pinView.bounds.size.width / 2
+                point.y -= pinView.bounds.size.height / 2
+                point.x += pinCenterOffset.x
+                point.y += pinCenterOffset.y
+                pinImage?.draw(at: point)
+            }
+
+            if let image = UIGraphicsGetImageFromCurrentImageContext() {
+                UIGraphicsEndImageContext()
+                DispatchQueue.main.async {
+                    self.imgMap.image = image
+                }
+            }
         }
     }
 }
