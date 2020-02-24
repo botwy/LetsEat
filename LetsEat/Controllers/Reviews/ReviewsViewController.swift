@@ -52,10 +52,10 @@ private extension ReviewsViewController {
                 collectionView.backgroundView = nil
             }
             else {
-//                let view = NoDataView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height))
-//                view.set(title: "Reviews")
-//                view.set(desc: "There are currently no reviews")
-//                collectionView.backgroundView = view
+                let view = NoDataView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height))
+                view.set(title: "Reviews")
+                view.set(desc: "There are currently no reviews")
+                collectionView.backgroundView = view
             }
             collectionView.reloadData()
         }
