@@ -11,4 +11,16 @@ import UIKit
 class ExploreCell: UICollectionViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgExplore: UIImageView!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        roundedCorners()
+    }
+}
+
+private extension ExploreCell {
+    func roundedCorners() {
+        imgExplore.layer.cornerRadius = 9
+        imgExplore.layer.masksToBounds = true
+    }
 }

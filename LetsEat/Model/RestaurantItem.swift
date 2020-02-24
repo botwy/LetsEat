@@ -56,6 +56,7 @@ class RestaurantItem: NSObject, MKAnnotation {
 extension RestaurantItem {
     convenience init(restaurant: JSON.Restaurant) {
         self.init()
+        restaurantID = restaurant.id
         name = restaurant.name
         latitude = restaurant.latitude
         longitude = restaurant.longitude

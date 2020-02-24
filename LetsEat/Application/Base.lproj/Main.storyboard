@@ -67,6 +67,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" name="LetsEat Red"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -133,7 +134,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-Sc-TWz">
                                                     <rect key="frame" x="0.0" y="0.0" width="164" height="164"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bA-rl-pCZ">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bA-rl-pCZ">
                                                             <rect key="frame" x="0.0" y="0.0" width="164" height="164"/>
                                                         </imageView>
                                                     </subviews>
@@ -504,17 +505,17 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3n-gX-uSH">
                                                     <rect key="frame" x="15" y="8" width="345" height="34"/>
                                                     <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="icon-calendar" translatesAutoresizingMaskIntoConstraints="NO" id="umK-HL-Vct">
+                                                            <rect key="frame" x="8" y="9" width="16" height="16"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWU-N1-W6S">
-                                                            <rect key="frame" x="29" y="7" width="308" height="21"/>
+                                                            <rect key="frame" x="30" y="7" width="308" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="icon-calendar" translatesAutoresizingMaskIntoConstraints="NO" id="umK-HL-Vct">
-                                                            <rect key="frame" x="8" y="9" width="16" height="16"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -582,9 +583,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxr-3v-CHd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ratings &amp; Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxr-3v-CHd">
                                                     <rect key="frame" x="15" y="5" width="345" height="26"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -775,8 +776,12 @@
                                             <constraints>
                                                 <constraint firstItem="iyh-M0-0bn" firstAttribute="leading" secondItem="AMx-5h-IBA" secondAttribute="leading" id="26M-Xa-0HQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="iyh-M0-0bn" secondAttribute="bottom" id="InM-UU-ZIH"/>
+                                                <constraint firstAttribute="trailing" secondItem="iyh-M0-0bn" secondAttribute="trailing" id="Sfc-Io-fUQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="iyh-M0-0bn" secondAttribute="bottom" id="V0F-Q3-2gm"/>
+                                                <constraint firstItem="iyh-M0-0bn" firstAttribute="top" secondItem="AMx-5h-IBA" secondAttribute="top" id="WEO-7e-NaT"/>
                                                 <constraint firstAttribute="trailing" secondItem="iyh-M0-0bn" secondAttribute="trailing" id="aYZ-jS-e3c"/>
                                                 <constraint firstItem="iyh-M0-0bn" firstAttribute="top" secondItem="AMx-5h-IBA" secondAttribute="top" id="jK2-4U-v4m"/>
+                                                <constraint firstItem="iyh-M0-0bn" firstAttribute="leading" secondItem="AMx-5h-IBA" secondAttribute="leading" id="kZr-rh-3hb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -869,7 +874,7 @@
                         <outlet property="lblHeaderAddress" destination="0XI-n6-DWc" id="Weg-2P-sTL"/>
                         <outlet property="lblName" destination="LsP-PZ-glF" id="ZTD-AV-Bq0"/>
                         <outlet property="lblOverallRating" destination="Cjk-UY-73X" id="yaa-vd-J32"/>
-                        <outlet property="lblTableDetails" destination="hxr-3v-CHd" id="1Kk-sE-eSO"/>
+                        <outlet property="lblTableDetails" destination="iWU-N1-W6S" id="Mbo-45-uCR"/>
                         <outlet property="ratingView" destination="XZv-Cl-QCj" id="WFu-cG-z1g"/>
                     </connections>
                 </tableViewController>
@@ -951,10 +956,10 @@
             </objects>
             <point key="canvasLocation" x="1315.9420289855072" y="-1164.5089285714284"/>
         </scene>
-        <!--View Controller-->
+        <!--Photos View Controller-->
         <scene sceneID="oY1-Ic-Fjm">
             <objects>
-                <viewController id="Yr0-Me-OnT" sceneMemberID="viewController">
+                <viewController id="Yr0-Me-OnT" customClass="PhotosViewController" customModule="LetsEat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ovK-YW-k18">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -963,37 +968,63 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z0h-7f-Rhn">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="200" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="acg-gJ-2IK">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="acg-gJ-2IK" customClass="PhotoCell" customModule="LetsEat" customModuleProvider="target">
+                                        <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZxX-ke-VBn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="ZxX-ke-VBn" firstAttribute="leading" secondItem="acg-gJ-2IK" secondAttribute="leading" id="67i-1u-8LX"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZxX-ke-VBn" secondAttribute="bottom" id="6fP-Uh-6iC"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZxX-ke-VBn" secondAttribute="trailing" id="RGj-ej-a3v"/>
+                                            <constraint firstItem="ZxX-ke-VBn" firstAttribute="top" secondItem="acg-gJ-2IK" secondAttribute="top" id="peB-yr-ktM"/>
+                                        </constraints>
+                                        <size key="customSize" width="200" height="200"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="ZxX-ke-VBn" id="Dqh-qC-sK5"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Yr0-Me-OnT" id="72l-zi-7nm"/>
+                                    <outlet property="delegate" destination="Yr0-Me-OnT" id="CfX-0B-PJs"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="ShU-IE-foN" secondAttribute="bottom" id="6RU-06-7jb"/>
                             <constraint firstAttribute="trailing" secondItem="ShU-IE-foN" secondAttribute="trailing" id="Bed-OO-2me"/>
+                            <constraint firstItem="ShU-IE-foN" firstAttribute="trailing" secondItem="29h-rW-WOi" secondAttribute="trailing" id="FSI-Lz-gPv"/>
                             <constraint firstItem="ShU-IE-foN" firstAttribute="leading" secondItem="ovK-YW-k18" secondAttribute="leading" id="MVb-hb-dO6"/>
+                            <constraint firstItem="ShU-IE-foN" firstAttribute="top" secondItem="29h-rW-WOi" secondAttribute="top" id="gJV-7u-xqS"/>
                             <constraint firstItem="ShU-IE-foN" firstAttribute="top" secondItem="ovK-YW-k18" secondAttribute="top" id="nEA-cn-9ry"/>
+                            <constraint firstItem="ShU-IE-foN" firstAttribute="leading" secondItem="29h-rW-WOi" secondAttribute="leading" id="v4t-OV-aFZ"/>
+                            <constraint firstItem="ShU-IE-foN" firstAttribute="bottom" secondItem="29h-rW-WOi" secondAttribute="bottom" id="vns-Mc-1E4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="29h-rW-WOi"/>
                     </view>
                     <size key="freeformSize" width="375" height="214"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ShU-IE-foN" id="p0f-q5-5O2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPA-te-aFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892" y="138"/>
+            <point key="canvasLocation" x="2980" y="150"/>
         </scene>
         <!--Photo Filter View Controller-->
         <scene sceneID="j1w-cg-IYE">
@@ -1197,7 +1228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWv-Us-zLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3114" y="-1165"/>
+            <point key="canvasLocation" x="2980" y="-1063"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dht-5H-SSd">
@@ -1403,6 +1434,9 @@
         </namedColor>
         <namedColor name="LetsEat Light Gray">
             <color red="0.68627450980392157" green="0.68627450980392157" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LetsEat Red">
+            <color red="0.81568627450980391" green="0.0078431372549019607" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

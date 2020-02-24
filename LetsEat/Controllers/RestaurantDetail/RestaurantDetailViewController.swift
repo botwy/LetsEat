@@ -15,6 +15,8 @@ class RestaurantDetailViewController: UITableViewController {
     
     var selectedRestaurant:RestaurantItem?
     
+    let coreDataManager = CoreDataManager()
+    
     @IBOutlet weak var ratingView: RatingView!
     // Nav Bar
     @IBOutlet weak var btnHeart: UIBarButtonItem!
@@ -120,8 +122,17 @@ private extension RestaurantDetailViewController {
     }
     
     func createRating() {
-        ratingView.rating = 3.5
-        ratingView.isEnabled = true
+        ratingView.isEnabled = false
+        guard let id = selectedRestaurant?.restaurantID else { return }
+        
+        let value = coreDataManager.fetchRestaurantRating(by: id)
+        ratingView.rating = CGFloat(value)
+        if value.isNaN {
+            lblOverallRating.text = "0"
+        }
+        else {
+            lblOverallRating.text = "\(value)"
+        }
     }
     
     private func setupLabels() {

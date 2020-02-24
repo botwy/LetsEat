@@ -8,7 +8,7 @@
 
 import CoreData
 
-class CoreDataManager: NSObject {
+struct CoreDataManager {
     
     private var selectedID:Int?
     

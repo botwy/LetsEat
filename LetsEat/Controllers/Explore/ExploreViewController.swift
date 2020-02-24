@@ -23,6 +23,11 @@ class ExploreViewController: UIViewController, UICollectionViewDelegate {
         manager.fetch()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == Segue.restaurantList.rawValue {
             guard selectedCity != nil else {

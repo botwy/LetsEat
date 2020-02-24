@@ -21,9 +21,7 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let city = selectedCity, let cuisineType = selectedType else { return }
-        manager?.fetch(byLocation: city, withFilter: cuisineType, completion: { (restaurants) in
-            self.collectionView.reloadData()
-        })
+        createData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,8 +37,29 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
             debugPrint("Segue not added")
         }
     }
+}
+
+private extension RestaurantViewController {
     
-    private func showRestaurantDetail(segue: UIStoryboardSegue) {
+    func createData() {
+        guard let city = selectedCity, let cuisineType = selectedType else { return }
+        manager?.fetch(byLocation: city, withFilter: cuisineType) { _ in
+            let restaurantNumber = self.manager?.numberOfItems ?? 0
+            if restaurantNumber > 0 {
+                self.collectionView.backgroundView = nil
+            } else {
+                let view = NoDataView(frame: CGRect(x: 0, y: 0, width: self.collectionView.frame.width, height: self.collectionView.frame.height))
+                view.set(title: "Restaurants")
+                view.set(desc: "No restaurants found.")
+                self.collectionView.backgroundView = view
+            }
+
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    func showRestaurantDetail(segue: UIStoryboardSegue) {
         guard let controller = segue.destination as? RestaurantDetailViewController,
               let indexPath = collectionView.indexPathsForSelectedItems?.first else {
             return
@@ -51,7 +70,7 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
         controller.manager = restaurantDataSourceFabric?.restaurantDetailDataSource
     }
     
-    private func setupTitle() {
+    func setupTitle() {
         navigationController?.setNavigationBarHidden(false, animated: false)
         if let city = selectedCity {
             title = "\(city.uppercased())"

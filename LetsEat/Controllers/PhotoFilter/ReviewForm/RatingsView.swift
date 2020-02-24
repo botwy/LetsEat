@@ -10,11 +10,11 @@ import UIKit
 
 class RatingView: UIControl {
     let imgFilledStar = #imageLiteral(resourceName: "filled-star")
-   let imgHalfStar = #imageLiteral(resourceName: "half-star")
-   let imgEmptyStar = #imageLiteral(resourceName: "empty-star")
-   let shouldBecomeFirstResponder = true
-   var rating:CGFloat = 0.0
-   var totalStars = 5
+    let imgHalfStar = #imageLiteral(resourceName: "half-star")
+    let imgEmptyStar = #imageLiteral(resourceName: "empty-star")
+    let shouldBecomeFirstResponder = true
+    var rating:CGFloat = 0.0
+    var totalStars = 5
     
     override init(frame: CGRect) {
         super.init(frame: frame)

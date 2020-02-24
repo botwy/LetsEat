@@ -1,5 +1,5 @@
 //
-//  ReviewsViewController.swift
+//  PhotosViewController.swift
 //  LetsEat
 //
 //  Created by Гончаров Денис Васильевич on 23.02.2020.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ReviewsViewController: UIViewController {
+class PhotosViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let manager = CoreDataManager()
-    var data: [ReviewItem] = []
+    var data: [RestaurantPhotoItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +25,13 @@ class ReviewsViewController: UIViewController {
     }
 }
 
-private extension ReviewsViewController {
+private extension PhotosViewController {
     func initialize() {
         setupCollectionView()
     }
 
     func setupDefaults() {
-        checkReviews()
+        checkPhotos()
     }
 
     func setupCollectionView() {
@@ -43,11 +43,11 @@ private extension ReviewsViewController {
         collectionView?.collectionViewLayout = flow
     }
 
-    func checkReviews() {
+    func checkPhotos() {
         let viewController = self.parent as? RestaurantDetailViewController
         if let id = viewController?.selectedRestaurant?.restaurantID {
             if data.count > 0 { data.removeAll() }
-            data = manager.fetchReviews(by: id)
+            data = manager.fetchPhotos(by: id)
             if data.count > 0 {
                 collectionView.backgroundView = nil
             }
@@ -62,7 +62,7 @@ private extension ReviewsViewController {
     }
 }
 
-extension ReviewsViewController: UICollectionViewDataSource {
+extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -72,31 +72,17 @@ extension ReviewsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! ReviewCell
-        let review = data[indexPath.row]
-        cell.lblTitle.text = review.title
-        cell.lblDate.text = review.displayDate
-        cell.lblName.text = review.name
-        cell.lblReview.text = review.customerReview
-        cell.ratingView.isEnabled = false
-        if let rating = review.rating {
-            cell.ratingView.rating = CGFloat(rating)
-        }
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        let restaurantPhotoItem = data[indexPath.row]
+        cell.imageView.image = restaurantPhotoItem.photo
+        
         return cell
     }
 }
 
-extension ReviewsViewController: UICollectionViewDelegateFlowLayout {
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize {
-        if data.count == 1 {
-           let width = collectionView.frame.size.width - 14
-            return CGSize(width: width, height: 200)
-        }
-        else {
-           let width = collectionView.frame.size.width - 21
-            return CGSize(width: width, height: 200)
-        }
+            return CGSize(width: 200, height: 200)
     }
 }
