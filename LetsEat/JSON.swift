@@ -13,6 +13,13 @@ struct JSON {
 }
 
 extension JSON {
+    
+    struct Cuisine: Codable {
+        var id: Int
+        var code: String
+        var value: String
+    }
+    
     struct Restaurant: Codable {
         var id: Int
         var name: String
@@ -22,7 +29,17 @@ extension JSON {
         var postalCode:String?
         var state:String?
         var imageURL:String?
-        var cuisines:[String]?
+        var reviews: [Review]
+        var cuisines:[Cuisine]?
+    }
+    
+    struct Review: Codable {
+        var id:Int?
+        var rating:Float?
+        var name:String?
+        var customerReview:String?
+        var date:Date?
+        var title: String?
     }
     
     struct RestaurantDetail: Codable {

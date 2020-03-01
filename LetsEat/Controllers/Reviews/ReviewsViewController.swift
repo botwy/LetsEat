@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class ReviewsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let manager = CoreDataManager()
-    var data: [ReviewItem] = []
+    let coreDataManager = CoreDataManager()
+    var fetchedResultsController: NSFetchedResultsController<Review>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,9 @@ class ReviewsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupDefaults()
+        if fetchedResultsController == nil {
+            setupFetchResultsController()
+        }
     }
 }
 
@@ -30,10 +33,23 @@ private extension ReviewsViewController {
         setupCollectionView()
     }
 
-    func setupDefaults() {
-        checkReviews()
+    func setupFetchResultsController() {
+        guard let viewController = self.parent as? RestaurantDetailViewController,
+              let restaurantID = viewController.selectedRestaurant?.restaurantID else {
+                return
+        }
+        let moc = CoreDataStack.shared.persistentContainer.viewContext
+        moc.automaticallyMergesChangesFromParent = true
+        let request:NSFetchRequest<Review> = Review.fetchRequest()
+        let predicate = NSPredicate(format: "restaurantID = %i", Int32(restaurantID))
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        request.predicate = predicate
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController?.delegate = self
+        try? fetchedResultsController?.performFetch()
+        collectionView.reloadData()
     }
-
+    
     func setupCollectionView() {
         let flow = UICollectionViewFlowLayout()
         flow.sectionInset = UIEdgeInsets(top: 7, left: 7, bottom: 7, right: 7)
@@ -42,29 +58,11 @@ private extension ReviewsViewController {
         flow.scrollDirection = .horizontal
         collectionView?.collectionViewLayout = flow
     }
-
-    func checkReviews() {
-        let viewController = self.parent as? RestaurantDetailViewController
-        if let id = viewController?.selectedRestaurant?.restaurantID {
-            if data.count > 0 { data.removeAll() }
-            data = manager.fetchReviews(by: id)
-            if data.count > 0 {
-                collectionView.backgroundView = nil
-            }
-            else {
-                let view = NoDataView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height))
-                view.set(title: "Reviews")
-                view.set(desc: "There are currently no reviews")
-                collectionView.backgroundView = view
-            }
-            collectionView.reloadData()
-        }
-    }
 }
 
 extension ReviewsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return fetchedResultsController?.fetchedObjects?.count ?? 0
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -73,13 +71,13 @@ extension ReviewsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewCell", for: indexPath) as! ReviewCell
-        let review = data[indexPath.row]
-        cell.lblTitle.text = review.title
-        cell.lblDate.text = review.displayDate
-        cell.lblName.text = review.name
-        cell.lblReview.text = review.customerReview
+        let review = fetchedResultsController?.object(at: indexPath)
+        cell.lblTitle.text = review?.title
+        cell.lblDate.text = review?.displayDate
+        cell.lblName.text = review?.name
+        cell.lblReview.text = review?.customerReview
         cell.ratingView.isEnabled = false
-        if let rating = review.rating {
+        if let rating = review?.rating {
             cell.ratingView.rating = CGFloat(rating)
         }
     
@@ -90,7 +88,7 @@ extension ReviewsViewController: UICollectionViewDataSource {
 extension ReviewsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize {
-        if data.count == 1 {
+        if fetchedResultsController?.fetchedObjects?.count == 1 {
            let width = collectionView.frame.size.width - 14
             return CGSize(width: width, height: 200)
         }
@@ -98,5 +96,11 @@ extension ReviewsViewController: UICollectionViewDelegateFlowLayout {
            let width = collectionView.frame.size.width - 21
             return CGSize(width: width, height: 200)
         }
+    }
+}
+
+extension ReviewsViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView.reloadData()
     }
 }

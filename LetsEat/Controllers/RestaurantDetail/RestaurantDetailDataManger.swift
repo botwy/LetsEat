@@ -9,5 +9,5 @@
 import Foundation
 
 protocol RestaurantDetailDataManager {
-    func fetch(completion: @escaping (RestaurantDetail) -> Void)
+    func fetch(restaurantId: String, completion: @escaping (RestaurantItem) -> Void)
 }

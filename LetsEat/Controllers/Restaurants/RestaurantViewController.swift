@@ -20,7 +20,6 @@ class RestaurantViewController: UIViewController, UICollectionViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let city = selectedCity, let cuisineType = selectedType else { return }
         createData()
     }
     

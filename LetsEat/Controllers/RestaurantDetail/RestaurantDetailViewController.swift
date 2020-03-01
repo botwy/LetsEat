@@ -61,13 +61,15 @@ class RestaurantDetailViewController: UITableViewController {
     }
     
     private func initialize() {
+        guard let restaurantId = selectedRestaurant?.restaurantID else { return }
+        
+        manager?.fetch(restaurantId: String(restaurantId), completion: { (restaurantItem) in
+            self.coreDataManager.importReviews(restaurantItem.reviews)
+        })
         createRating()
         setupLabels()
         createMap()
         setupNotificationDefaults()
-        manager?.fetch { (detail) in
-            
-        }
     }
     
     private func setupNotificationDefaults() {

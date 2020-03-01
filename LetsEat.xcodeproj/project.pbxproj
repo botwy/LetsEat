@@ -15,6 +15,8 @@
 		D70993082402EF4100F24DEB /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70993072402EF4100F24DEB /* PhotosViewController.swift */; };
 		D709930B2403E42300F24DEB /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709930A2403E42300F24DEB /* NoDataView.swift */; };
 		D709930D2403E5AE00F24DEB /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D709930C2403E5AE00F24DEB /* NoDataView.xib */; };
+		D709930F240BA22A00F24DEB /* ReviewDataNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D709930E240BA22A00F24DEB /* ReviewDataNetworkManager.swift */; };
+		D7099311240C329900F24DEB /* Review+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7099310240C329900F24DEB /* Review+Extension.swift */; };
 		D70B50F323DC914100EDF66A /* LocationData.plist in Resources */ = {isa = PBXBuildFile; fileRef = D70B50F223DC914100EDF66A /* LocationData.plist */; };
 		D71C39F323A6165D003B3839 /* EploreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C39F223A6165D003B3839 /* EploreItem.swift */; };
 		D71C39F523A61911003B3839 /* ExploreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C39F423A61911003B3839 /* ExploreDataManager.swift */; };
@@ -110,6 +112,8 @@
 		D70993072402EF4100F24DEB /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D709930A2403E42300F24DEB /* NoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		D709930C2403E5AE00F24DEB /* NoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataView.xib; sourceTree = "<group>"; };
+		D709930E240BA22A00F24DEB /* ReviewDataNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDataNetworkManager.swift; sourceTree = "<group>"; };
+		D7099310240C329900F24DEB /* Review+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Review+Extension.swift"; sourceTree = "<group>"; };
 		D70B50F223DC914100EDF66A /* LocationData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LocationData.plist; sourceTree = "<group>"; };
 		D71C39F223A6165D003B3839 /* EploreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EploreItem.swift; sourceTree = "<group>"; };
 		D71C39F423A61911003B3839 /* ExploreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreDataManager.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 			children = (
 				D71EB60A24011DE10001852D /* ReviewFormViewController.swift */,
 				D71EB60824010F7F0001852D /* RatingsView.swift */,
+				D709930E240BA22A00F24DEB /* ReviewDataNetworkManager.swift */,
 			);
 			path = ReviewForm;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				D70993022402E60C00F24DEB /* CoreDataStack.swift */,
 				D71EB62524029A720001852D /* CoreDataManager.swift */,
 				D71EB61E240296CF0001852D /* LetsEatModel.xcdatamodeld */,
+				D7099310240C329900F24DEB /* Review+Extension.swift */,
 			);
 			path = PersistentData;
 			sourceTree = "<group>";
@@ -610,6 +616,8 @@
 				D7E1D1C52393A41E009DF781 /* AppDelegate.swift in Sources */,
 				D71C39F523A61911003B3839 /* ExploreDataManager.swift in Sources */,
 				D70993032402E60C00F24DEB /* CoreDataStack.swift in Sources */,
+				D709930F240BA22A00F24DEB /* ReviewDataNetworkManager.swift in Sources */,
+				D7099311240C329900F24DEB /* Review+Extension.swift in Sources */,
 				D7E6C6D32393DB3C00CDC156 /* ExploreViewController.swift in Sources */,
 				D700A7B523B8FBEC00AB11B0 /* RestaurantDetailViewController.swift in Sources */,
 				D71EB624240299790001852D /* RestaurantPhotoItem.swift in Sources */,

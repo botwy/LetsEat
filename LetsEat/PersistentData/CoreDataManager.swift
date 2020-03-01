@@ -30,6 +30,9 @@ struct CoreDataManager {
     
     func addReview(_ item:ReviewItem) {
         let review = Review(context: container.viewContext)
+        if let id = item.id {
+            review.id = Int32(id)
+        }
         if let rating = item.rating { review.rating = rating }
         review.name = item.name
         review.date = Date()
@@ -41,6 +44,28 @@ struct CoreDataManager {
             review.restaurantID = Int32(id)
             print("restaurant id \(id)")
             save()
+        }
+    }
+    
+    func importReviews(_ items:[ReviewItem]) {
+        container.performBackgroundTask { (moc) in
+            let request:NSFetchRequest<Review> = Review.fetchRequest()
+            do {
+                let reviews = try moc.fetch(request)
+                let oldIds = Set<Int>(reviews.compactMap{ Int($0.id) })
+                let newIds = Set<Int>(items.compactMap{ $0.id })
+                let idsForImport = newIds.subtracting(oldIds)
+                let filteredItems = items.filter{ idsForImport.contains($0.id!) }
+                filteredItems.forEach {
+                    _ = Review(context: moc, reviewItem: $0)
+                }
+                if moc.hasChanges {
+                    try moc.save()
+                    print("background saved")
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     

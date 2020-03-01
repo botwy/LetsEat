@@ -20,6 +20,7 @@ class RestaurantItem: NSObject, MKAnnotation {
     var state:String?
     var imageURL:String?
     var restaurantID:Int?
+    var reviews: [ReviewItem] = [ReviewItem]()
     
     convenience init(dict: [String : AnyObject]) {
         self.init()
@@ -65,7 +66,8 @@ extension RestaurantItem {
         postalCode = restaurant.postalCode
         imageURL = restaurant.imageURL
         if let cuisines = restaurant.cuisines {
-            self.cuisines = cuisines
+            self.cuisines = cuisines.map{ $0.value }
         }
+        reviews = restaurant.reviews.map{ ReviewItem(json: $0, restaurantID: restaurant.id) }
     }
 }
